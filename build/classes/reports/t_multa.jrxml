@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sistema_multas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d6173f0-92ff-4015-adba-cb5ae3e70c77">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select tmu.codigo, tmu.descricao, tmu.penalidade, tmu.pontuacao, tmu.competencia, tmu.ufir, tmu.peso, ((tmu.ufir * tmu.peso) * top.ufir) as multa
+from t_multa tmu, t_opcoes top
+where tmu.codigo = '501 - 0']]>
+	</queryString>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="penalidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pontuacao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="competencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ufir" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="peso" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="multa" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="codigo">
+		<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<frame>
+					<reportElement uuid="246df1bb-c2cd-4b59-aae1-e730c10fbd99" mode="Opaque" x="-21" y="-3" width="597" height="26" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<textField>
+						<reportElement uuid="24ea7801-2e43-4806-b02c-130f3267310d" style="SubTitle" x="22" y="0" width="212" height="24" forecolor="#736343"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="3"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="35e703ba-43a2-47cb-a92d-866f7154359f" style="SubTitle" x="181" y="32" width="196" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Sistema de Multas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e0e54d59-3f1f-4d53-9579-f747f308c04e" style="Title" x="180" y="0" width="197" height="32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Sistema de Frota]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="e50b7e4d-684e-4dd9-9b48-e6cda7378095" x="1" y="0" width="46" height="39"/>
+				<imageExpression><![CDATA["S:\\Frota\\Imagens\\totalhealth.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="155" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d4507e3d-5a48-4042-958e-e107add933fc" x="1" y="20" width="554" height="52"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bd11cf3c-6f5d-4346-80ef-d05e82ade6e8" x="1" y="92" width="554" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penalidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d210c65-fc5c-4d65-a11c-b0f7f20ba744" x="1" y="132" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pontuacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bfdcf908-b959-4d4c-9a69-0b33b4a21e9a" x="101" y="132" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{competencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cabaef2f-aeca-4372-9b54-e3b4ccf6a8bc" x="201" y="132" width="58" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ufir}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="196be8f7-f79c-48d1-9586-898fce8feba8" x="259" y="132" width="56" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="a7ef336b-1468-4396-89ce-2af86a4c6cb7" x="315" y="132" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{multa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6d5c81ee-fb99-46e0-8127-7db62332703a" x="1" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4efef832-e5d0-4c87-9557-7f07e0eb131e" x="1" y="72" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Penalidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11913884-9398-4c1c-8566-e77e5c2f5429" x="1" y="112" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pontuação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bebf301e-d5e8-4558-99e0-af1f65821cde" x="101" y="112" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Competência]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ed96d7d-f65d-494e-a88c-0b9f1b0dd91e" x="201" y="112" width="58" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UFIR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0b413cfb-93a3-4978-a333-adfbbf46d431" x="259" y="112" width="56" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="32af2eb3-6409-403f-83d6-066f14e02033" x="315" y="112" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Multa]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch">
+			<line>
+				<reportElement uuid="25095492-ec68-4fef-9a6e-ff7b17ba345b" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="079cce3b-88e6-4ac7-8514-6b79f2285414" mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="0136030f-065d-41aa-ae55-5836a71d47f1" style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="8227369a-f498-41b9-b875-29b7d4691e4f" style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="8a561449-2b0b-48c4-92b7-35b7076923b4" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,21 @@
+ public String decoder(String str) {  
+   
+     
+    
+         Charset charsetOrigem = Charset.forName("UTF-8");    
+         CharsetEncoder encoderOrigem = charsetOrigem.newEncoder();  
+         Charset charsetDestino = Charset.forName("windows-1252");  
+         CharsetDecoder decoderDestino = charsetDestino.newDecoder();  
+           
+         String s = "";  
+   
+         try {  
+             ByteBuffer bbuf = encoderOrigem.encode(CharBuffer.wrap(str));  
+             CharBuffer cbuf = decoderDestino.decode(bbuf);  
+             s = cbuf.toString();  
+         } catch (CharacterCodingException e) {  
+             e.printStackTrace();  
+         }  
+   
+         return s;  
+    } 

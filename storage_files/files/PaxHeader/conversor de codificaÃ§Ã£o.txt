@@ -1,0 +1,6 @@
+97 path=Java/02 - Projetos/02 - Sistema de Frota/Source/files/conversor de codificaÃ§Ã£o.txt
+29 ctime=1381066689.25956861
+27 atime=1381066689.259568
+19 SCHILY.dev=2051
+21 SCHILY.ino=537176
+18 SCHILY.nlink=1

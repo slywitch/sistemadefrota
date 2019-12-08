@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistoricoCarro" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01308d8d-753f-43f5-821f-be02bd1388c4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select tve.placa, tmo.nome,
+	(tcha.km) as km_inicial, to_char(tcha.data, 'DD/MM/YYYY') as data_inicial, (tcha.hora) as hora_inicial, tcha.destino,
+	(tcd.km) as km_final, to_char(tcd.data, 'DD/MM/YYYY') as data_final, (tcd.hora) as hora_final
+from t_chaves tcha
+inner join t_veiculo tve on tve.chassis = tcha.chassis_cod
+inner join t_motorista tmo on tmo.cpf = tcha.cpf_cod
+inner join t_chaves_devolucao tcd on tcd.codigo = tcha.codigo
+where tve.placa = 'BMO2345']]>
+	</queryString>
+	<field name="placa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="km_inicial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_inicial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora_inicial" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="destino" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="km_final" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_final" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora_final" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0a1ca34f-b7c8-463c-8e87-124dda085ccd" style="SubTitle" x="317" y="32" width="197" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Histórico Carro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="055507f1-e8dc-45cf-ba99-90aeeffa1da6" style="Title" x="317" y="0" width="197" height="32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Sistema de Frota]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="e50b7e4d-684e-4dd9-9b48-e6cda7378095" x="1" y="0" width="46" height="39"/>
+				<imageExpression><![CDATA["S:\\Frota\\Imagens\\totalhealth.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<frame>
+				<reportElement uuid="b0fee998-a09f-4350-9aa5-8efc67914514" mode="Opaque" x="0" y="0" width="802" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+				<textField>
+					<reportElement uuid="82ee6247-5776-4ad2-b7d9-809691458264" x="48" y="4" width="100" height="20" forecolor="#736343"/>
+					<textElement>
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="ec4c8cc5-91bb-4688-ae02-de046a1f9b14" x="1" y="4" width="47" height="20" forecolor="#736343"/>
+					<textElement>
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Placa]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement uuid="c9c0e1d1-f26d-4d24-88eb-52fc7ff77c76" x="1" y="24" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motorista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b36ba5e-f054-4987-9f62-a2b7112a5843" x="179" y="24" width="73" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Km Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c92f8452-353e-46d9-8cc7-8c0396839f64" x="252" y="24" width="82" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45096d0f-f41b-40d7-9f3c-ad635c253455" x="334" y="24" width="80" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e62199d3-584f-4b9a-a2dd-9596a2cf1a68" x="414" y="24" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3a8170e-ed83-4040-9825-74d3a074489c" x="584" y="24" width="71" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Km Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="614b3d82-00e1-4c21-b275-f43b791e854f" x="655" y="24" width="77" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="51393ec2-4f66-4eb0-abad-63732c11a5bd" x="732" y="24" width="70" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Final]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="1dfd7092-60f4-434e-a554-33d7fb36bc36" x="1" y="0" width="178" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8b8b6396-7358-419d-8b1f-df375e0a1656" x="179" y="0" width="73" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{km_inicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f182ece3-ef48-4867-9bd2-0f6eb9d0d94c" x="252" y="0" width="82" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_inicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement uuid="a62775e1-3b34-4355-8015-64ad6864a9a3" x="334" y="0" width="80" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_inicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="353e92b4-04d7-438f-a6d5-a32a16529fd0" x="584" y="0" width="71" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{km_final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cbb93711-fa50-4dfb-a4d6-b6c2042ba5d8" x="655" y="0" width="77" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_final}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement uuid="3c04548a-533f-4a5a-977e-63ffe24ae439" x="732" y="0" width="70" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_final}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0dc443d7-6e62-4bf0-9376-43f95f147676" x="414" y="0" width="170" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destino}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch">
+			<line>
+				<reportElement uuid="c1c1301b-7300-42fd-9f60-54dc546894a0" positionType="FixRelativeToBottom" x="0" y="2" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="e6442cc0-bce5-4f41-8359-1b7081ec0dcf" mode="Opaque" x="-21" y="1" width="823" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="64cb7b24-6cf3-4c66-80df-deb444cf0568" style="Column header" x="783" y="-1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0a5ed5f0-7b0a-464f-8840-273c3fb0e956" style="Column header" x="703" y="-1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="fdeff0d1-511d-41fb-b6b3-248cfe541e4a" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

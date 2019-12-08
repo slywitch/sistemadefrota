@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RendimentoVeiculo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69541be4-9f78-42cf-b1bf-4ec093659270">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select ttr.codigo, ttr.movimentacao_cod, ttr.fornecedor_cod, tfo.nomefornecedor,
+	ttr.evento_item_cod, tei.descricao, ttr.produto_cod, (tpr.nome) as combustivel,
+	ttr.km, ttr.qtde, ttr.abreviacao, ttr.placa
+from t_temp_rendimento ttr
+inner join t_fornecedor tfo on tfo.cnpjcpf = ttr.fornecedor_cod
+inner join t_evento_item tei on tei.codigo = ttr.evento_item_cod
+inner join t_produto tpr on tpr.codigo = ttr.produto_cod
+order by codigo]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="movimentacao_cod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fornecedor_cod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomefornecedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="evento_item_cod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="produto_cod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="combustivel" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="km" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qtde" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="abreviacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="placa">
+		<groupExpression><![CDATA[$F{placa}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement uuid="0fbb189e-182a-47ab-84ad-c75dfda6b858" mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<rectangle>
+						<reportElement uuid="e5198f13-6a3d-4b94-851f-b7316d86c722" mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement uuid="0b975fd7-6edb-4b24-8fc3-f3651bb91b82" style="SubTitle" x="68" y="0" width="755" height="24" forecolor="#736343"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="baf5ca91-a38e-44a3-8aeb-1b6281af2e63" style="Title" x="198" y="0" width="366" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Sistema de Frota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="025efad6-14c0-42fd-b9bf-1a3497c1c6d8" style="SubTitle" x="296" y="62" width="173" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Rendimento do Veículo]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="e50b7e4d-684e-4dd9-9b48-e6cda7378095" x="1" y="0" width="46" height="39"/>
+				<imageExpression><![CDATA["S:\\Frota\\Imagens\\totalhealth.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch">
+			<line>
+				<reportElement uuid="5e8805c0-d09c-4353-b461-a72031e3a343" positionType="FixRelativeToBottom" x="0" y="0" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="228" splitType="Stretch">
+			<frame>
+				<reportElement uuid="35c86877-fb67-4223-9f86-4f8658fbf906" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+			</frame>
+			<textField>
+				<reportElement uuid="4eab68d3-98e6-4839-9a48-047b0af7d7dc" x="1" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{movimentacao_cod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1a7501ad-c855-432b-983c-304f8d4e9fa9" x="101" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nomefornecedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="77ed5871-e550-4b1d-834a-b17b5784600a" x="201" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="774b1d7f-9d17-4346-a70d-9f556eb8f167" x="301" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{combustivel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a559a2c9-6e1f-4bb7-bca0-ac641756d795" x="401" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{km}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="59960473-071d-4f21-bcda-770ac6473397" x="501" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{qtde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a54039b6-41e9-4a5b-aad8-1295eb8a0163" x="601" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{abreviacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="277ab889-16d3-4214-9028-a3edbb3d821a" x="701" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="d152cdb2-af9c-4ad5-9bb7-743ff6a45e8c" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="7ac2b565-cd23-4266-ab3b-62d328cfd784" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="fcb9c197-429c-4efd-9e93-86738c5b564b" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="24d98af2-3341-473c-9d33-22d4bcbf701a" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="31a3bcce-1676-4748-bf4d-fcad8014c3c7" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

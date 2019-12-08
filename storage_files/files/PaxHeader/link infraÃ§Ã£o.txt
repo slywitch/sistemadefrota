@@ -1,0 +1,6 @@
+86 path=Java/02 - Projetos/02 - Sistema de Frota/Source/files/link infraÃ§Ã£o.txt
+30 ctime=1381066689.083568628
+27 atime=1381066689.082568
+19 SCHILY.dev=2051
+21 SCHILY.ino=537172
+18 SCHILY.nlink=1

@@ -1,0 +1,33 @@
+Sistema de Frota 0.1 - Release Candidate 1 (2009/2010)
+
+- 1ª versão do sistema montado, liberado para avaliação 
+
+
+Sistema de Frota 0.1 - Release Candidate 2 (março/2013)
+
+- Correção de Bugs
+- Atualização do componentes JAR
+- Alterações da interface gráfica
+- Mudanças dos menus para botão
+- sistema bit de exclusao, ocultação do dado para a segurança da informação
+
+Sistema de Frota 0.1 - Release Candidate 3 (andamento)
+
+- Correção de Bugs
+- Alterações da interface gráfica
+- Alteração do cadastro de motorista (formulário e Banco de Dados)
+- Criação da tabela tipo_telefone
+- Alterações do Cadastro de Fornecedores para suporte de vários números de telefone e e-mail.
+- Otimização do Cadastro de Veículo para o campo modelo, tirando o combo e colocando a pesquisa por F12
+- no cadastro do veiculo colocar o TAG do Sem Parar
+- Seguro/Seguradora
+- No cadastro de veículo criou interações com o Seguro para inserir alterar e exibir o numero da apólice
+
+
+******************************************************************************************************************
+
+
+- Manutenção Preventiva
+- Imagens de Documentos
+- Calculo de Pontos por período de 1 ano (Ranking)
+- Sistema em geral (Melhorias, Desempenho e Interatividade) 

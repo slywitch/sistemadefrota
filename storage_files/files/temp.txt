@@ -1,0 +1,43 @@
+       try {
+           int codestoque;
+           codestoque = ((Estoque)jCBEstoque.getSelectedItem()).getKey();
+           String documento, tipo;
+           documento = jTFDocumento.getText();
+           tipo = jCBTipo.getSelectedItem().toString().substring(0, 1);
+           Conexao.setSQL("insert into movimentacao (documento, tipo, data, codestoque) values ('" + documento + "','" + tipo + "', CURRENT_DATE, '" + codestoque + "')");
+           Conexao.Executar();
+
+           Conexao.setSQL("select codmovimentacao from movimentacao order by codmovimentacao desc limit 1");
+           ResultSet RS = Conexao.Consultar();
+           RS.next();
+           int codmovimentacao = RS.getInt("codmovimentacao");    
+           
+            int linha_total = jTable1.getRowCount();
+            int contador = 1;
+
+            while(contador <= linha_total){
+                int linha = contador - 1;
+                String codproduto, quantidade;
+
+                codproduto = jTable1.getValueAt(linha, 0).toString();
+                quantidade = jTable1.getValueAt(linha, 2).toString();
+
+                Conexao.setSQL("insert into movimentacao_itens (codmovimentacao, chvps, quantidade) values (" + Integer.toString(codmovimentacao) + ", '" + codproduto + "', '" + quantidade + "')");
+                Conexao.Executar();
+
+                // Baixar Estoque
+                Conexao.setSQL("select * from produto_estoque where chvps = " + codproduto + "");
+                RS = Conexao.Consultar();
+                if(RS.getFetchSize()>0){
+                    RS.next();
+                    float estoque = RS.getFloat("estoque") + new Float(quantidade);
+                    Conexao.setSQL("");
+                }
+
+                contador++;
+            }
+            Limpar();
+           
+        }catch (Exception E){
+            JOptionPane.showMessageDialog(null, "Erro: " + E);
+        }
